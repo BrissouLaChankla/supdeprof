@@ -1,0 +1,82 @@
+.imgDudeContainer {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 1) 0%, rgba(99, 102, 241, 1) 100%);
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.cloud_one {
+    background: url('/resources/images/login/cloud_1.png') no-repeat;
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 180px;
+    height: 100px;
+    background-size: contain;
+    z-index: 3;
+    transform: translateX(320%);
+    animation: cloud_one 26.5s ease-in 3s infinite;
+}
+
+.cloud_two {
+    position: absolute;
+    background: url('/resources/images/login/cloud_2.png') no-repeat;
+    top: 32%;
+    left: 50%;
+    width: 200px;
+    height: 100px;
+    background-size: contain;
+    z-index: 1;
+    transform: translateX(160%);
+    animation: cloud_two 16.5s ease-in infinite;
+}
+
+/* css keyframes */
+@keyframes cloud_one {
+    0% {
+        transform: translateX(320%);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes cloud_two {
+    0% {
+        transform: translateX(160%);
+    }
+
+    100% {
+        transform: translateX(-240%);
+    }
+}
+
+.card-log {
+    min-height: inherit;
+
+    &>.container {
+        height: 80vh;
+    }
+}
+
+.imgDude {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 110%;
+    z-index: 2;
+    position: absolute;
+    transform: translateY(500px);
+    animation: slideIn 3s forwards;
+}
+
+
+@keyframes slideIn {
+    to {
+        transform: translateY(0);
+    }
+}
