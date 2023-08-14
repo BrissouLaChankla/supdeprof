@@ -83,9 +83,10 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $slug)
+    public function edit(string $id)
     {
-        dd($slug);
+        $course = Course::find($id);
+        return view('admin.courses.create', compact("course"));
     }
 
     /**

@@ -14,7 +14,7 @@
             </a>
         </div>
         @forelse($chapter->courses as $course)
-            <a href="{{ route('courses.edit', ['course' => $course->slug]) }}" >
+            <a href="{{ route('courses.edit', ['course' => $course->id]) }}" >
                 {{ $course->title }}
             </a>
         @empty

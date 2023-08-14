@@ -12,26 +12,40 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('courses.store') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="title" class="form-label">Titre du cours</label>
-                <input type="text" class="form-control" name="title" id="title" required>
-            </div>
-            <div class="mb-3">
-                <label for="slides" class="form-label">Lien du Google Slides</label>
-                <input type="text" class="form-control" id="slides" name="presentation_iframe">
-            </div>
+        {{-- Nous ne chargeons cette vu avec un $chapter_id uniquement lors de la création d'un cours, c'est comme ça qu'on sait s'il est entrain de créer ou d'éditer --}}
+        
+        @isset($chapter_id)
+            <form method="POST" action="{{ route('courses.store') }}">
+        @else
+            <form method="POST" action="{{ route('courses.update', $course->id) }}">
+            @method('PUT')
+        @endisset
 
-            <div class="mb-3">
-                <label for="context" class="form-label">Mise en contexte</label>
-                <textarea class="tinyMce" name="context" id="context"></textarea>
-            </div>
+                @csrf
 
-            <input type="hidden" name="chapter_id" value="{{ $chapter_id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titre du cours</label>
+                    <input type="text" class="form-control" name="title" id="title"
+                        value="{{ $course->title ?? '' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="slides" class="form-label">Lien du Google Slides</label>
+                    <input type="text" class="form-control" id="slides"
+                        value="{{ $course->presentation_iframe ?? '' }}" name="presentation_iframe">
+                </div>
 
-        </form>
+                <div class="mb-3">
+                    <label for="context" class="form-label">Mise en contexte</label>
+                    <textarea class="tinyMce" name="context" id="context">
+                    {{ $course->context ?? '' }}
+                </textarea>
+                </div>
+                @isset($chapter_id)
+                    <input type="hidden" name="chapter_id" value="{{ $chapter_id }}">
+                @endisset
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
     </div>
 
 
