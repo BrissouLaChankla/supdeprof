@@ -94,7 +94,10 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $course = Course::find($id);
+        $course->update($request->all());
+        $chapter = Chapter::find($course->chapter_id);
+        return view('admin.chapters.show', compact("chapter") );
     }
 
     /**
