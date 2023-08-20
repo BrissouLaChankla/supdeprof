@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Chapter;
 use App\Models\Course;
+use App\Models\Section;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 
 class CourseController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -50,9 +52,12 @@ class CourseController extends Controller
 
         $slug = $this->generateUniqueSlug($request->title);
         $request->merge(['slug' => $slug, 'teacher_id' =>  Auth::id()]);
-        
+
         $course = Course::create($request->all());
         $course->save();
+
+        $this->createSections($request->all(), $course->id);
+
         return redirect()->route('chapters.index');
     }
 
@@ -70,14 +75,15 @@ class CourseController extends Controller
 
         return $slug;
     }
-    
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $course = Course::where('slug', $slug)->first();
+        return view("admin.courses.show", compact("course"));
     }
 
     /**
@@ -94,10 +100,13 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        $this->createSections($request->all(), $id);
+       
         $course = Course::find($id);
         $course->update($request->all());
-        $chapter = Chapter::find($course->chapter_id);
-        return view('admin.chapters.show', compact("chapter") );
+
+        return redirect()->route('chapters.show', ['chapter' => $course->chapter_id]);
     }
 
     /**
@@ -106,5 +115,42 @@ class CourseController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+
+    // Custom
+
+    public function addSection()
+    {
+        return view("components.course-section");
+    }
+
+
+    public function createSections($data, $id) {
+         // Ici on supprime toutes les sections puis on les recrée, ça permet de remettre dans l'ordre facilement si y'a suppression de section etc  
+         Section::where('course_id', $id)->delete();
+
+         foreach ($data as $key => $value) {
+             // Vérifier si la clé commence par "titlesection_"
+             if (strpos($key, 'titlesection_') === 0) {
+                 // Récupérer l'index en retirant le préfixe
+                 $index = substr($key, strlen('titlesection_'));
+ 
+                 // Utiliser l'index pour obtenir le titre et le contenu correspondants
+                 $sectionTitle = $value;
+                 $sectionContent = $data['section_' . $index];
+ 
+ 
+                 Section::create(
+                     [
+                         'order' => $index,
+                         'title' => $sectionTitle,
+                         'content' => $sectionContent,
+                         'course_id' => $id
+                     ]
+                 );
+             }
+         }
     }
 }

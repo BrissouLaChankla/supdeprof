@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreign('chapter_id')->references('id')->on('chapters');
             $table->unsignedBigInteger('teacher_id');
             $table->foreign('teacher_id')->references('id')->on('users');
+            $table->timestamps();
+
         });
 
         Schema::enableForeignKeyConstraints();

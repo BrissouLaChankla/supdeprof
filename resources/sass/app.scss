@@ -1,6 +1,8 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
+@import url("tinymce/skins/ui/oxide-dark/skin.min.css");
+
 
 // Variables
 @import 'variables';
@@ -11,3 +13,4 @@
 
 @import 'login.scss'; 
 @import 'global';
+@import 'tinymce';

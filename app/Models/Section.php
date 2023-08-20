@@ -15,4 +15,7 @@ class Section extends Model
         'content',
         'course_id',
     ];
+
+    public $timestamps = false;
+
 }

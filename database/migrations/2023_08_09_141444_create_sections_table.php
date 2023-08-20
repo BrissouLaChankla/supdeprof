@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->smallInteger('order')->default(1);
             $table->string('title');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
         });

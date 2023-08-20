@@ -22,13 +22,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::prefix('home')->middleware('auth')->group(function () {
     // Dashboard
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     
     Route::resource('courses', CourseController::class);
+    Route::get('/add-section', [CourseController::class, 'addSection'])->name('add-section');
+    
+    
     Route::resource('chapters', ChapterController::class);
     
 });

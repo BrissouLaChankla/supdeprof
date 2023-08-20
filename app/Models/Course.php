@@ -24,9 +24,18 @@ class Course extends Model
     }
     public $timestamps = false;
 
+    public function sections() {
+        return $this->hasMany(Section::class);
+    }
+
     public function teacher() {
-        return $this->hasOne(teacher::class);
+        return $this->hasOne(User::class, 'id', 'teacher_id');
+    }
+
+    public function getTeacherFullNameAttribute()
+    {
+        return $this->teacher->firstname . ' ' . $this->teacher->lastname;
     }
 
     
-}
+    }

@@ -24,7 +24,6 @@ class ChapterController extends Controller
     public function create()
     {
         return view("admin.chapters.create");
-
     }
 
     /**
@@ -50,11 +49,15 @@ class ChapterController extends Controller
      */
     public function show(string $id)
     {
-       
-        $chapter = Chapter::with('courses:id,title,chapter_id')->find($id);
-        
-        if($chapter) {
-            return view('admin.chapters.show', compact("chapter"));
+
+        $chapter = Chapter::with('courses:id,title,context,slug,teacher_id,chapter_id')->find($id);
+        $courses = $chapter->courses()->paginate(6);
+
+        if ($chapter) {
+            return view('admin.chapters.show')->with([
+                "chapter" => $chapter,
+                "courses" => $courses
+            ]);
         } else {
             return back()->withErrors(['error' => 'Ce chapitre n\'existe pas !']);
         }
