@@ -14,7 +14,6 @@ class Chapter extends Model
         'description',
         'icon',
     ];
-    public $timestamps = false;
 
     public function courses() {
         return $this->hasMany(Course::class);

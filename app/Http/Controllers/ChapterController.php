@@ -36,10 +36,12 @@ class ChapterController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(url()->previous() . '#footer')->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         } else {
             $chapter = Chapter::create($request->all());
             $chapter->save();
+
+            session()->flash('success', 'Le chapitre a bien été crée !');
             return redirect()->route('chapters.index');
         }
     }

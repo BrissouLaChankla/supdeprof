@@ -7,7 +7,7 @@
                 <div class="col-md-6 d-flex align-items-center order-md-2">
                     <div class="text-center w-100 py-5 px-3 px-md-5">
                         <h1>SupDeProf</h1>
-                        <p class="text-muted">Créez vos cours, partagez les et simplifiez votre organisation.</p>
+                        <p class="text-muted  my-3 mb-4">Créez vos cours, partagez les et simplifiez votre organisation.</p>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

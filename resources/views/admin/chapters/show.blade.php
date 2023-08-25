@@ -27,19 +27,29 @@
                             <li class="{{ $chapter->icon }}"></li>
                         </div>
                         <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="bagdge text-bg-light pe-3 ps-2 py-1 position-absolute top-0 end-0 border-bottom-start-rounded">📆&nbsp;&nbsp;01/01/2023</small>
-                            <span class="badge rounded-pill text-bg-dark text-white px-3 py-1">{{$course->teacher_full_name}}</span>
-                        </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none text-body">
+                                    <img src="{{ $course->teacher->avatar }}" class="rounded border bg-secondary-subtle" width="35"
+                                    alt="">
+                                    <span class="ms-2">
+                                        {{ $course->teacher_full_name }}
+                                    </span>
+                                </a>
+                                <small
+                                    class="bagdge text-bg-light border p-1 px-2 rounded">📆&nbsp;&nbsp;{{ $course->updated_at->format('d-m-Y') }}</small>
+
+                            </div>
                             <h5 class="card-title mt-3 fw-bold">{{ $course->title }}</h5>
-                            <p class="card-text">
+                            <span class="card-text text-muted">
                                 {!! Str::words($course->context, 10, ' ...') !!}
-                            <div class="d-flex justify-content-between">
-                                <a class="btn btn-outline-primary " href="{{ route('courses.show', ['course' => $course->slug]) }}">
+                            </span>
+                            <div class="d-flex justify-content-between mt-4">
+                                <a class="btn btn-outline-primary "
+                                    href="{{ route('courses.show', ['course' => $course->slug]) }}">
                                     Consulter
                                 </a>
                                 {{-- Editable uniquement si vous êtes l'auteur du cours  --}}
-                                <a class="btn btn-outline-primary @if($course->teacher_id !== auth()->id()) disabled btn-outline-secondary @endif"
+                                <a class="btn btn-outline-primary @if ($course->teacher_id !== auth()->id()) disabled btn-outline-secondary @endif"
                                     href="{{ route('courses.edit', ['course' => $course->id]) }}">
                                     ✏️
                                 </a>

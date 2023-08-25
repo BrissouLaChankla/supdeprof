@@ -9,7 +9,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/initMCE.js',
+                // 'resources/js/initMCE.js',
                 'resources/js/importMCE.js'
             ],
             refresh: true,

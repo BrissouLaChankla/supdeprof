@@ -20,10 +20,15 @@ return new class extends Migration
             $table->string('slug');
             $table->text('context')->nullable();
             $table->text('presentation_iframe')->nullable();
+            $table->boolean('is_visible')->default(true);
             $table->unsignedBigInteger('chapter_id');
             $table->foreign('chapter_id')->references('id')->on('chapters');
             $table->unsignedBigInteger('teacher_id');
             $table->foreign('teacher_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('day_id')->nullable();
+            $table->foreign('day_id')->references('id')->on('days');
+
             $table->timestamps();
 
         });

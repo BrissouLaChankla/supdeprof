@@ -45,7 +45,6 @@
                 <div id="sections-container">
                     @isset($course)
                         @foreach ($course->sections as $section)
-                            {{-- @dd($section) --}}
                             <x-course-section :title="$section->title" :content="$section->content" />
                         @endforeach
                     @endisset

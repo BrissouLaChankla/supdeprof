@@ -19,7 +19,9 @@
                 <input type="text" class="form-control" id="icon" name="icon" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">{{ __('Enregistrer') }}</button>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">{{ __('Enregistrer') }}</button>
+            </div>
         </form>
 
     </div>

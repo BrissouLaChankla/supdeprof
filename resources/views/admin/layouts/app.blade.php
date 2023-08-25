@@ -11,8 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -53,7 +54,11 @@
 
                                 <a class="dropdown-item" href="{{ route('chapters.index') }}">
                                     <span class="me-2">📚</span>
-                                    Les cours
+                                    Tous les cours
+                                </a>
+                                <a class="dropdown-item" href="{{ route('days.index') }}">
+                                    <span class="me-2">🌞</span>
+                                    Toutes les journées
                                 </a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -83,6 +88,17 @@
     </div>
     @stack('scripts')
 
+    @if (session('success'))
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                Swal.fire(
+                    '{{ session('success') }}',
+                    '',
+                    'success'
+                )
+            });
+        </script>
+    @endif
     @if (session('errors'))
         <script>
             window.addEventListener('DOMContentLoaded', () => {

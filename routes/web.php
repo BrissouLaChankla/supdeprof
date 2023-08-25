@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\DayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,14 @@ Route::prefix('home')->middleware('auth')->group(function () {
     
     Route::resource('courses', CourseController::class);
     Route::get('/add-section', [CourseController::class, 'addSection'])->name('add-section');
+    Route::post('/removeday/{id}', [CourseController::class, 'removeDay'])->name('remove-course-from-day');
+    Route::post('/addday', [CourseController::class, 'addDay'])->name('add-course-to-day');
     
     
     Route::resource('chapters', ChapterController::class);
+    
+    
+    Route::resource('days', DayController::class);
+    Route::post('/set-today-day', [DayController::class, 'setTodayDay'])->name('set-today-day');
     
 });

@@ -17,12 +17,13 @@ class Course extends Model
         'presentation_iframe',
         'chapter_id',
         'teacher_id',
+        'day_id',
+        'is_visible',   
     ];
 
     public function chapter() {
-        return $this->hasOne(Chapter::class);
+        return $this->hasOne(Chapter::class, 'id', 'chapter_id');
     }
-    public $timestamps = false;
 
     public function sections() {
         return $this->hasMany(Section::class);
@@ -32,10 +33,18 @@ class Course extends Model
         return $this->hasOne(User::class, 'id', 'teacher_id');
     }
 
+    public function day() {
+        return $this->hasOne(Day::class);
+    }
+
+
     public function getTeacherFullNameAttribute()
     {
         return $this->teacher->firstname . ' ' . $this->teacher->lastname;
     }
 
+    public function getIconAttribute() {
+        return $this->chapter->icon;
+    }
     
     }
