@@ -1,3 +1,5 @@
+<div class="text-center mt-4">
+
 <h1 class="ml1">
     <span class="text-wrapper">
         <span class="line line1"></span>
@@ -5,7 +7,7 @@
         <span class="line line2"></span>
     </span>
 </h1>
-
+</div>
 <style>
     .ml1 {
         font-weight: 900;

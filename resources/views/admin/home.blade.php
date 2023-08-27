@@ -10,39 +10,43 @@
                 Salut {{ Auth::user()->firstname }} !
             </h2>
         </div> --}}
-        <div class="text-center mt-4">
-            
+        @if (!isset($today))
+                <x-animated-title text="Patience" />
+         
+        @else
             <x-animated-title :text="$today->name" />
-            
-            </div>
+
+
             <h5 class="mt-5 mb-3">
                 Voici les notions du jour :
             </h5>
-        <div class="bg-light px-3 pt-2 today-course-container scrollbar rounded shadow-sm">
-            <div class="p-3 border-bottom pb-4">
-                {!! $today->goal !!}
-            </div>
-            @forelse ($today->courses as $course)
-                <a href="{{ route('courses.show', ['course' => $course->slug]) }}"
-                    class="border-bottom d-flex align-items-center gap-3 py-2 text-decoration-none">
-
-                    <div class="bg-primary-subtle text-primary px-3 py-1 rounded-1 fs-3">
-                        <li class="{{ $course->icon }}"></li>
-                    </div>
-
-                    <div>
-                        <h5>
-                            {{ $course->title }}
-                        </h5>
-                        <p class="text-muted">{{ $course->chapter->name }}</p>
-                    </div>
-                </a>
-
-            @empty
-                <div class="alert alert-primary mt-4" role="alert">
-                    Patience, les cours du jour arrivent !
+            <div class="bg-light px-3 pt-2 today-course-container scrollbar rounded shadow-sm">
+                <div class="p-3 border-bottom pb-4">
+                    {!! $today->goal !!}
                 </div>
-            @endforelse
-        </div>
+                @forelse ($today->courses as $course)
+                    <a href="{{ route('courses.show', ['course' => $course->slug]) }}"
+                        class="border-bottom d-flex align-items-center gap-3 py-2 text-decoration-none">
+
+                        <div class="bg-primary-subtle text-primary px-3 py-1 rounded-1 fs-3">
+                            <li class="{{ $course->icon }}"></li>
+                        </div>
+
+                        <div>
+                            <h5>
+                                {{ $course->title }}
+                            </h5>
+                            <p class="text-muted">{{ $course->chapter->name }}</p>
+                        </div>
+                    </a>
+
+                @empty
+                    <div class="alert alert-primary mt-4" role="alert">
+                        Patience, les cours du jour arrivent !
+                    </div>
+                @endforelse
+            </div>
+        @endif
+
     </div>
 @endsection
