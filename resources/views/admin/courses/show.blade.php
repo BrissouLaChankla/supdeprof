@@ -30,8 +30,15 @@
                         <div class="card course-container scrollspy-example scrollbar" data-bs-spy="scroll"
                             data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true"
                             tabindex="0">
+                            <div id="section_0">
+                                <h2 class="title-section px-4 py-2 fs-4 fw-bold bg-primary-subtle">Contexte
+                                </h2>
+                                <div class="p-4">
+                                    {!! $course->context !!}
+                                </div>
+                            </div>
                             @forelse ($course->sections as $section)
-                                <div id="section_{{ $section->order }}">
+                                <div id="section_{{ $section->order + 1 }}">
                                     <h2 class="title-section px-4 py-2 fs-4 fw-bold bg-primary-subtle">{{ $section->title }}
                                     </h2>
                                     <div class="p-4">
@@ -46,9 +53,11 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card p-3 mt-3" id="simple-list-example">
+                            <a class="p-1 rounded anchor text-decoration-none"
+                            href="#section_0">Contexte</a>
                             @forelse ($course->sections as $section)
                                 <a class="p-1 rounded anchor text-decoration-none"
-                                    href="#section_{{ $section->order }}">{{ $section->title }}</a>
+                                    href="#section_{{ $section->order + 1 }}">{{ $section->title }}</a>
                             @empty
                                 <p>Aucun chapitre pour le moment.</p>
                             @endforelse
@@ -70,4 +79,12 @@
         </div>
 
     </div>
+    @push('styles')
+        <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
+    @endpush
+    @push('scripts')
+        @vite(['resources/js/prism.js'])
+
+
+    @endpush
 @endsection
