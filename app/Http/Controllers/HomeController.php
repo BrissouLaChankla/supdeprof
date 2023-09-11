@@ -26,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Sélectionne la journée du jour en fonction de l'année scolarie de l'élève 
         $today = Day::where('class_year', Auth::user()->class_year)->where('is_today', 1)->with('courses')->first();
         
         return view('admin.home')->with([

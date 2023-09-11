@@ -72,7 +72,6 @@
 
         <script>
             const addSectionsName = () => {
-                console.log("update names")
                 document.querySelectorAll('#sections-container textarea').forEach((section, i) => {
 
                     section.name = "section_" + i
@@ -116,4 +115,6 @@
             })
         </script>
     @endpush
+
+   
 @endsection
