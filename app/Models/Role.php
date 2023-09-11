@@ -14,4 +14,12 @@ class Role extends Model
         'description',
         'rights_lvl',
     ];
+
+
+
+    public function users() {
+        return $this->hasMany(User::class);
+    } 
+
+  
 }

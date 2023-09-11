@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\DayController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,7 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::resource('days', DayController::class);
     Route::post('/set-today-day', [DayController::class, 'setTodayDay'])->name('set-today-day');
     
+
+    Route::resource('users', UserController::class);
+
 });

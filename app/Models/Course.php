@@ -22,7 +22,7 @@ class Course extends Model
     ];
 
     public function chapter() {
-        return $this->hasOne(Chapter::class, 'id', 'chapter_id');
+        return $this->belongsTo(Chapter::class);
     }
 
     public function sections() {
@@ -30,11 +30,11 @@ class Course extends Model
     }
 
     public function teacher() {
-        return $this->hasOne(User::class, 'id', 'teacher_id');
+        return $this->belongsTo(User::class);
     }
 
     public function day() {
-        return $this->hasOne(Day::class);
+        return $this->belongsTo(Day::class);
     }
 
 
