@@ -8,7 +8,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
-      "file": "assets/fa-regular-400-7d81a1a7.ttf",
+    "file": "assets/fa-regular-400-7d81a1a7.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
@@ -62,7 +62,7 @@
     "src": "resources/js/importMCE.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a266ec51.css",
+    "file": "assets/app-24760131.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
