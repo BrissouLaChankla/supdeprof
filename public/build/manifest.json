@@ -52,7 +52,7 @@
     "src": "resources/images/login/img3.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-1a5827b3.js",
+    "file": "assets/app-690b35dc.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
@@ -62,7 +62,7 @@
     "src": "resources/js/importMCE.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-24760131.css",
+    "file": "assets/app-9e409a0e.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
