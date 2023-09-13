@@ -20,7 +20,7 @@
             <h5 class="mt-5 mb-3">
                 Voici les notions du jour :
             </h5>
-            <div class="bg-light px-3 pt-2 today-course-container scrollbar rounded shadow-sm">
+            <div class="bg-body px-3 pt-2 today-course-container scrollbar rounded shadow-sm">
                 <div class="p-3 border-bottom pb-4">
                     {!! $today->goal !!}
                 </div>

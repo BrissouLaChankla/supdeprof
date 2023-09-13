@@ -36,7 +36,7 @@
                                     </span>
                                 </a>
                                 <small
-                                    class="bagdge text-bg-light border p-1 px-2 rounded">📆&nbsp;&nbsp;{{ $course->updated_at->format('d-m-Y') }}</small>
+                                    class="bagdge text-bg-body border p-1 px-2 rounded">📆&nbsp;&nbsp;{{ $course->updated_at->format('d-m-Y') }}</small>
 
                             </div>
                             <h5 class="card-title mt-3 fw-bold">{{ $course->title }}</h5>

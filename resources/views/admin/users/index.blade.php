@@ -4,32 +4,26 @@
     <div class="container">
         <div>
             <h1>Gestion des utilisateurs</h1>
-
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>
-                Liste des étudiants
-            </h2>
-            <a href="{{ route('chapters.create') }}" class="btn btn-primary ">
-                Ajouter un étudiant
-            </a>
-        </div>
-        {{-- @foreach ($users->students as $student)
-        @endforeach --}}
 
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>
-                Liste des intervenants
-            </h2>
-            <a href="{{ route('chapters.create') }}" class="btn btn-primary ">
-                Ajouter un intervenant
-            </a>
-        </div>
-        {{-- @foreach ($users->teachers as $teacher)
-        @endforeach --}}
+        <x-datatable name="etudiant" :role="$students" />
+        <x-datatable name="intervenant" :role="$teachers" />
+        <x-datatable name="administrateur" :role="$admins" />
 
-          @foreach ($admins as $admin)
-          {{$admin->firstname}}
-        @endforeach
+
     </div>
+
+    @push('styles')
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    @endpush
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('table').forEach(el => {
+                    const dataTable = new simpleDatatables.DataTable(el)
+                })
+            })
+        </script>
+    @endpush
 @endsection

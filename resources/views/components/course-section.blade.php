@@ -1,4 +1,4 @@
-<div class="position-relative bg-light p-3 rounded shadow-sm mb-3 section">
+<div class="position-relative bg-body p-3 rounded shadow-sm mb-3 section">
     <div>
         <div class="position-absolute top-0 end-0 btn btn-danger btn-sm rounded-0 border-bottom-start-rounded delete-section">
             <i class="fa-solid fa-trash"></i>

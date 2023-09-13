@@ -18,7 +18,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('styles')
-
+    {{-- Setup Darkmode if necessary --}}
+    <script>localStorage.getItem("darkmode") ? document.documentElement.setAttribute('data-bs-theme', 'dark') : document.documentElement.setAttribute('data-bs-theme', 'light');</script>
 </head>
 
 <body>
@@ -83,7 +84,9 @@
                             </div>
                         </li>
                     </ul>
+                    @include('components.switch')
                 </div>
+
             </div>
         </nav>
 
