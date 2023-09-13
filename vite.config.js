@@ -10,7 +10,8 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 // 'resources/js/initMCE.js',
-                'resources/js/importMCE.js'
+                'resources/js/importMCE.js',
+                'resources/js/prism.js'
             ],
             refresh: true,
         }),

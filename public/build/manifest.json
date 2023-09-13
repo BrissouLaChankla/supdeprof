@@ -61,6 +61,11 @@
     "isEntry": true,
     "src": "resources/js/importMCE.js"
   },
+  "resources/js/prism.js": {
+    "file": "assets/prism-8d929701.js",
+    "isEntry": true,
+    "src": "resources/js/prism.js"
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-9e409a0e.css",
     "isEntry": true,
