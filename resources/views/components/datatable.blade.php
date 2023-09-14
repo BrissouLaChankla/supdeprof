@@ -23,7 +23,9 @@
                     <th scope="row">{{ $data->id }}</th>
                     <td>{{ $data->firstname }}</td>
                     <td>{{ $data->lastname }}</td>
-                    <td>{{ $data->email }}</td>
+                    <td>
+                        <a href="mailto:{{ $data->email }}">{{ $data->email }}</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

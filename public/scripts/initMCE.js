@@ -2,10 +2,10 @@
 function initMCE() {
     tinymce.init({
         selector: 'textarea.basic',
-        plugins: ' importcss searchreplace autolink autosave directionality code visualblocks visualchars fullscreen image link media codesample table charmap  pagebreak nonbreaking anchor  lists wordcount    charmap quickbars ',
+        plugins: ' importcss searchreplace autolink autosave directionality code visualblocks visualchars fullscreen image link media codesample table charmap  nonbreaking   lists wordcount    charmap quickbars ',
         imagetools_cors_hosts: ['picsum.photos'],
         menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen | insertfile image media template link anchor codesample | ltr rtl',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen | insertfile image media link codesample | ltr rtl',
         toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: '30s',

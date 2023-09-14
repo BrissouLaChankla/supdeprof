@@ -53,19 +53,30 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('chapters.index') }}">
-                                    <span class="me-2">📚</span>
-                                    Tous les cours
-                                </a>
-                                <a class="dropdown-item" href="{{ route('days.index') }}">
-                                    <span class="me-2">🌞</span>
-                                    Toutes les journées
-                                </a>
+                                @if(Auth::user()->role->rights_lvl > 1)
+                                    <a class="dropdown-item" href="{{ route('chapters.index') }}">
+                                        <span class="me-2">📚</span>
+                                        Tous les cours
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('days.index') }}">
+                                        <span class="me-2">🌞</span>
+                                        Toutes les journées
+                                    </a>
+                                @endif
 
-                                <a class="dropdown-item" href="{{ route('users.index') }}">
-                                    <span class="me-2">🖲️</span>
-                                    Gestion des utilisateurs
-                                </a>
+                                @if(Auth::user()->role->rights_lvl > 2)
+                                <hr>
+                                    <a class="dropdown-item" href="{{ route('users.index') }}">
+                                        <span class="me-2">🖲️</span>
+                                        Gestion des utilisateurs
+                                    </a>
+                                    <a class="dropdown-item" href="/log-viewer">
+                                        <span class="me-2">📜</span>
+                                        Logs
+                                    </a>
+                                    <hr>
+                                @endif
+                                
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -84,7 +95,9 @@
                             </div>
                         </li>
                     </ul>
-                    @include('components.switch')
+                    <div class="ms-2">
+                        @include('components.switch')
+                    </div>
                 </div>
 
             </div>
