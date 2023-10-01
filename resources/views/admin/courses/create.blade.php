@@ -15,9 +15,9 @@
         {{-- Nous ne chargeons cette vu avec un $chapter_id uniquement lors de la création d'un cours, c'est comme ça qu'on sait s'il est entrain de créer ou d'éditer --}}
 
         @isset($chapter_id)
-            <form method="POST" action="{{ route('courses.store') }}">
+            <form method="POST" action="{{ route('courses.store') }}" enctype="multipart/form-data">
             @else
-                <form method="POST" action="{{ route('courses.update', $course->id) }}">
+                <form method="POST" action="{{ route('courses.update', $course->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                 @endisset
 
@@ -92,7 +92,7 @@
                 );
 
 
-                initMCE();
+                initMCE('{{ csrf_token() }}');
                 addSectionsName();
                 addDeleteInteraction();
             })
@@ -109,7 +109,7 @@
 
             document.addEventListener('DOMContentLoaded', () => {
 
-                initMCE();
+                initMCE('{{ csrf_token() }}');
                 addSectionsName();
                 addDeleteInteraction();
             })

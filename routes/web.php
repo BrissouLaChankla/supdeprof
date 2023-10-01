@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
@@ -33,7 +34,8 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('/add-section', [CourseController::class, 'addSection'])->name('add-section');
     Route::post('/removeday/{id}', [CourseController::class, 'removeDay'])->name('remove-course-from-day');
     Route::post('/addday', [CourseController::class, 'addDay'])->name('add-course-to-day');
-    
+    // Upload Image
+    Route::post('/upload-course-img', [CourseController::class, 'addImageCourse']);
     
     Route::resource('chapters', ChapterController::class);
     
@@ -45,3 +47,5 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
 
 });
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('guest')->name('password.email');

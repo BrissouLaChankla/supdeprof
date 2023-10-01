@@ -6,6 +6,7 @@
             <div class="row h-100">
                 <div class="col-md-6 d-flex align-items-center order-md-2">
                     <div class="text-center w-100 py-md-5 px-3 pb-5 pb-md-0 ">
+                        
                         <h1>SupdeCours</h1>
                         <p class="text-muted  my-3 mb-4">Créez vos cours, partagez les et simplifiez votre organisation.</p>
 
@@ -53,7 +54,7 @@
                 </div>
                 <div class="col-md-6 order-md-1 p-0 d-none d-md-block">
                     <div class="position-relative overflow-hidden h-100 w-100 rounded-start-4 imgDudeContainer">
-                        <img src="{{ Vite::asset('resources/images/login/img1.png') }}" class="imgDude" alt="Bonhomme">
+                        <img src="{{ Vite::asset('resources/images/login/img1.webp') }}" class="imgDude" alt="Bonhomme">
                         <div class="cloud_one"></div>
                         <div class="cloud_two"></div>
                     </div>

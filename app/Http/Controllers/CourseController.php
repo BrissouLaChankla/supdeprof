@@ -140,7 +140,7 @@ class CourseController extends Controller
 
         $course = Course::find($id);
 
-
+        
         $course->update($request->all());
 
         return redirect()->route('chapters.show', ['chapter' => $course->chapter_id]);
@@ -206,5 +206,12 @@ class CourseController extends Controller
         return back();
     }
 
+
+    public function addImageCourse(Request $request) {
+        $path = $request->file('file')->store('images'); // Stockez l'image dans le répertoire "images".
+    
+        return response()->json(['location' => asset($path)]);
+        
+    }
   
 }

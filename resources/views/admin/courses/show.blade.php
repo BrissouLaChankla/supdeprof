@@ -33,7 +33,7 @@
                             <div id="section_0">
                                 <h2 class="title-section px-4 py-2 fs-4 fw-bold bg-primary-subtle">Contexte
                                 </h2>
-                                <div class="p-4">
+                                <div class="p-4 lead">
                                     {!! $course->context !!}
                                 </div>
                             </div>
