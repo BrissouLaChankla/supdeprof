@@ -2,7 +2,7 @@
         <h2>
             Liste des {{$name}}s
         </h2>
-        <a href="{{ route('users.create') }}" class="btn btn-primary ">
+        <a href="{{ route('register') }}" class="btn btn-primary ">
             Ajouter un {{$name}}
         </a>
     </div>

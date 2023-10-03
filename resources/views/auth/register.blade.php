@@ -25,12 +25,19 @@
                                         </span>
                                     @enderror
 
-                                    <label for="lastname"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Lastname') }}</label>
+                                    <div class="row">
 
-                                    <input id="lastname" type="text"
+                                        
+                                        <label for="lastname"
+                                        class="col-md-4 col-form-label text-md-end">{{ __('Lastname') }}</label>
+                                        
+                                        <input id="lastname" type="text"
                                         class="form-control @error('lastname') is-invalid @enderror" name="lastname"
                                         value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                    </div>
+
+
+
                                     @error('lastname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

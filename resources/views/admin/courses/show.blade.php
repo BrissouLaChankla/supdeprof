@@ -74,6 +74,9 @@
             @endisset
             <div class="tab-pane fade" id="ressources" role="tabpanel" aria-labelledby="ressources-tab">
                 <div class="mt-3">
+                    <em>
+                        A venir...
+                    </em>
                 </div>
             </div>
         </div>

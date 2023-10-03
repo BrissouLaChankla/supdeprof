@@ -48,9 +48,9 @@ class DayController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
-            
+
             $slug = $this->generateUniqueSlug($request->name);
-            
+
             $request->merge(['slug' => $slug, 'teacher_id' =>  Auth::id()]);
 
             $day = Day::create($request->all());
@@ -97,36 +97,59 @@ class DayController extends Controller
     }
 
 
-// Custom 
-private function generateUniqueSlug($name) {
-    $slug = Str::slug($name); // Generate a basic slug
+    // Custom 
+    private function generateUniqueSlug($name)
+    {
+        $slug = Str::slug($name); // Generate a basic slug
 
-    $originalSlug = $slug;
-    $counter = 2;
+        $originalSlug = $slug;
+        $counter = 2;
 
-    while (Course::where('slug', $slug)->exists()) {
-        $slug = $originalSlug . '-' . $counter;
-        $counter++;
+        while (Course::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 
-    return $slug;
-}
+    public function setTodayDay(Request $request)
+    {
 
-public function setTodayDay(Request $request) {
-    
-    $others = Day::where('class_year', $request->class_year)->get();
-    
-    // Vire tous les cours du jour de la classe en question
-    foreach ($others as $other) {
-        $other->update(['is_today' => 0]);
+        $others = Day::where('class_year', $request->class_year)->get();
+
+        // Vire tous les cours du jour de la classe en question
+        foreach ($others as $other) {
+            $other->update(['is_today' => 0]);
+        }
+
+
+        $day = Day::find($request->id);
+        $day->is_today = 1;
+        $day->save();
+
+        return response()->json($day);
     }
 
+    public function unsetTodayDay(Request $request)
+    {
+        $day = Day::find($request->id);
+        $day->is_today = 0;
+        $day->save();
 
-    $day = Day::find($request->id);
-    $day->is_today = 1;
-    $day->save();
+        return back();
+    }
 
-    return response()->json($day);
-}
+    public function removeDay(Request $request)
+    {
+        $courses = Course::where('day_id', $request->day_id)->get();
+        foreach ($courses as $course) {
+            $course->update(['day_id' => null]);
+        }
 
+        $day = Day::find($request->day_id);
+        $day->delete();
+        return response()->json("gg");
+
+    }
 }

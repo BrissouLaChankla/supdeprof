@@ -7,8 +7,8 @@
                 <div class="col-md-6 d-flex align-items-center order-md-2">
                     <div class="text-center w-100 py-md-5 px-3 pb-5 pb-md-0 ">
                         
-                        <h1>SupdeCours</h1>
-                        <p class="text-muted  my-3 mb-4">Créez vos cours, partagez les et simplifiez votre organisation.</p>
+                        <h1>Supde<span class="text-primary">Cours</span></h1>
+                        <p class="text-muted  my-3 mb-4">Rendez-vous ici pour récupérer les cours, slides et ressources 👍</p>
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

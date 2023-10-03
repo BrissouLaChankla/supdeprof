@@ -19,8 +19,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
@@ -34,6 +38,8 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('/add-section', [CourseController::class, 'addSection'])->name('add-section');
     Route::post('/removeday/{id}', [CourseController::class, 'removeDay'])->name('remove-course-from-day');
     Route::post('/addday', [CourseController::class, 'addDay'])->name('add-course-to-day');
+
+    
     // Upload Image
     Route::post('/upload-course-img', [CourseController::class, 'addImageCourse']);
     
@@ -42,10 +48,10 @@ Route::prefix('home')->middleware('auth')->group(function () {
     
     Route::resource('days', DayController::class);
     Route::post('/set-today-day', [DayController::class, 'setTodayDay'])->name('set-today-day');
+    Route::post('/unset-today-day', [DayController::class, 'unsetTodayDay'])->name('unset-today-day');
+    Route::delete('/remove-day', [DayController::class, 'removeDay'])->name('remove-day');
     
 
     Route::resource('users', UserController::class);
 
 });
-
-Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('guest')->name('password.email');

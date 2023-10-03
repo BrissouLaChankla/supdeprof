@@ -13,10 +13,11 @@
                 Ajouter un cours
             </a>
         </div>
-        <div class="mt-4">
+        {{-- TODO --}}
+        {{-- <div class="mt-4">
             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
             <label class="btn btn-outline-info" for="btncheck1">Mes cours</label>
-        </div>
+        </div> --}}
         <div class="row mt-4">
             {{ $courses->links() }}
 

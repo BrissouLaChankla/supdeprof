@@ -208,9 +208,12 @@ class CourseController extends Controller
 
 
     public function addImageCourse(Request $request) {
-        $path = $request->file('file')->store('images'); // Stockez l'image dans le répertoire "images".
-    
-        return response()->json(['location' => asset($path)]);
+        $fileName=$request->file('file')->getClientOriginalName();
+        $path=$request->file('file')->storeAs('uploads', $fileName, 'public');
+        return response()->json(['location'=>"/storage/$path"]); 
+        
+        /*$imgpath = request()->file('file')->store('uploads', 'public'); 
+        return response()->json(['location' => "/storage/$imgpath"]);*/
         
     }
   

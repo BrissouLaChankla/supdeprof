@@ -12,10 +12,10 @@
                 Créer une journée
             </a>
         </div>
-
+{{-- 
         <div class="mt-4">
             <div class="btn btn-secondary">Voir les cours du jour</div>
-        </div>
+        </div> --}}
         <div class="mt-4">
             <div class="row">
 
@@ -26,11 +26,32 @@
                             <div class="row g-0">
                                 <div class="col-md-3">
                                     <div
-                                        class="bg-secondary d-flex align-items-center justify-content-center text-white  h-100 position-relative">
+                                        class="bg-secondary d-flex align-items-center justify-content-center text-white h-100 position-relative">
                                         @if ($day->is_today)
-                                            <span class="bg-warning text-center py-2 top-0 w-100 position-absolute">
-                                                Cours du jour !
+                                        <div class="bg-warning text-center py-2 top-0 w-100 position-absolute d-flex align-items-center justify-content-between px-2">
+                                            <span>
+                                                Cours du jour
                                             </span>
+
+
+
+                                            <a href="{{ route('unset-today-day', ['id' => $day->id]) }}"
+                                                class="text-danger"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('unset-today-day-{{ $day->id }}').submit();">
+                                                <i class="fa-solid fa-times"></i>
+                                            </a>
+
+                                            <form id="unset-today-day-{{ $day->id }}"
+                                                action="{{ route('unset-today-day', ['id' => $day->id]) }}"
+                                                method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+
+
+
+
+                                        </div>
                                         @endif
                                         <span class="fs-1">
                                             <i class="{{ $day->icon }}"></i>
@@ -38,7 +59,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <div class="card-body">
+                                    <div class="card-body p-4">
+                                        <i class="fa-solid fa-times position-absolute top-0 end-0 p-1 text-danger" onclick="deleteDay({{$day->id}})"></i>
+
+                                        
                                         <div class="d-flex justify-content-between align-items-center mb-2">
                                             <h5 class="card-title m-0">{{ $day->name }}</h5>
                                             <small class="bg-primary-subtle rounded px-2">
@@ -137,7 +161,7 @@
                                         </select>
 
                                         <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                        <input type="submit" value="+" class="btn btn-success btn-sm">
+                                        <input type="submit" value="+" class="btn btn-success btn-sm text-white">
                                     </form>
                                 @endisset
                         </td>
@@ -173,6 +197,39 @@
                             body: JSON.stringify({
                                 id,
                                 class_year
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            location.reload();
+                        })
+
+                }
+            })
+        }
+
+
+        function deleteDay(day_id) {
+            Swal.fire({
+                title: 'Êtes-vous sûr ?',
+                text: "Vous allez supprimer cette journée.",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Oups..',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, c\'est bon'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('{{ route('remove-day') }}', {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+                            },
+                            method: "DELETE",
+                            body: JSON.stringify({
+                                day_id
                             }),
                         })
                         .then(response => response.json())
