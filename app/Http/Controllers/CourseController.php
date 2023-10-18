@@ -142,6 +142,9 @@ class CourseController extends Controller
 
         
         $course->update($request->all());
+        if(isset($request->isfast)) {
+            return response()->json("Cours bien sauvegardé 👌");
+        }
 
         return redirect()->route('chapters.show', ['chapter' => $course->chapter_id]);
     }

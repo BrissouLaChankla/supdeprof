@@ -59,3 +59,8 @@ figure.image {
   .tox-promotion, .tox-statusbar__branding {
     display: none;
   }
+
+.tox-editor-header {
+  display: flex;
+  flex-wrap: wrap;  
+}
