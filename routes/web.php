@@ -36,6 +36,7 @@ Route::prefix('home')->middleware('auth')->group(function () {
     
     Route::resource('courses', CourseController::class);
     Route::get('/add-section', [CourseController::class, 'addSection'])->name('add-section');
+    Route::get('/my-courses', [CourseController::class, 'allCourses'])->name('all-courses');
     Route::post('/removeday/{id}', [CourseController::class, 'removeDay'])->name('remove-course-from-day');
     Route::post('/addday', [CourseController::class, 'addDay'])->name('add-course-to-day');
 

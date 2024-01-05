@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\Section;
+use App\Models\Day;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
@@ -140,9 +141,9 @@ class CourseController extends Controller
 
         $course = Course::find($id);
 
-        
+
         $course->update($request->all());
-        if(isset($request->isfast)) {
+        if (isset($request->isfast)) {
             return response()->json("Cours bien sauvegardé 👌");
         }
 
@@ -195,14 +196,16 @@ class CourseController extends Controller
         }
     }
 
-    public function addDay(Request $request) {
+    public function addDay(Request $request)
+    {
         $course = Course::find($request->course_id);
         $course->day_id = $request->day_id;
         $course->save();
         return back();
     }
 
-    public function removeDay($id) {
+    public function removeDay($id)
+    {
         $course = Course::find($id);
         $course->day_id = null;
         $course->save();
@@ -210,14 +213,29 @@ class CourseController extends Controller
     }
 
 
-    public function addImageCourse(Request $request) {
-        $fileName=$request->file('file')->getClientOriginalName();
-        $path=$request->file('file')->storeAs('uploads', $fileName, 'public');
-        return response()->json(['location'=>"/storage/$path"]); 
-        
+    public function addImageCourse(Request $request)
+    {
+        $fileName = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->storeAs('uploads', $fileName, 'public');
+        return response()->json(['location' => "/storage/$path"]);
+
         /*$imgpath = request()->file('file')->store('uploads', 'public'); 
         return response()->json(['location' => "/storage/$imgpath"]);*/
-        
     }
-  
+
+    public function allCourses()
+    {
+        $days = Day::where('class_year', Auth::user()->class_year)->with('courses')->get();
+        $courses = [];
+
+        foreach ($days as $day) {
+            $courses = array_merge($courses, $day->courses->all());
+        }
+
+
+
+        return view('admin.courses.all')->with([
+            'courses' => $courses
+        ]);
+    }
 }

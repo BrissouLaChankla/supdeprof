@@ -55,6 +55,12 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
+                                @if(Auth::user()->role->rights_lvl === 1)
+                                <a class="dropdown-item" href="{{ route('all-courses') }}">
+                                    <span class="me-2">📚</span>
+                                    Tous mes cours
+                                </a>
+                                @endif
                                 @if(Auth::user()->role->rights_lvl > 1)
                                     <a class="dropdown-item" href="{{ route('chapters.index') }}">
                                         <span class="me-2">📚</span>
